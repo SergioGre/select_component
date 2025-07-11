@@ -1,0 +1,96 @@
+.select-container {
+  position: relative;
+  width: 250px;
+  outline: none;
+}
+
+.select-input {
+  display: flex;
+  align-items: center;
+  border: 1px solid #f0f0f0;
+  padding: 9px;
+  cursor: pointer;
+  background: rgb(255, 255, 255);
+  border-bottom: 2px solid #e8e8e8;
+}
+
+.select-input.open,
+.select-container:focus-within .select-input,
+.select-input:hover {
+  border-bottom: 2px solid #0066cc;
+}
+
+.select-input-field {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.clear-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #999;
+  padding: 0 5px;
+  font-size: 16px;
+  visibility: hidden;
+}
+
+.select-input:hover .clear-button {
+  visibility: visible;
+}
+
+.dropdown-icon {
+  font-size: 12px;
+  margin-left: 8px;
+  transform: rotate(0deg);
+  transition: transform 0.2s;
+}
+
+.select-input.open .dropdown-icon {
+  transform: rotate(180deg);
+}
+
+.select-options {
+  position: absolute;
+  width: 100%;
+  background: white;
+  border: 1px solid #f0f0f0;
+  border-top: none;
+  z-index: 1000;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: start;
+}
+
+.select-options.bottom {
+  top: 100%;
+}
+
+.select-options.top {
+  bottom: 100%;
+}
+
+.option {
+  padding: 8px 12px;
+  cursor: pointer;
+  color: black;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-sizing: border-box;
+}
+
+.option:hover {
+  background-color: #f0f0f0;
+}
+
+.option.focused {
+  background-color: #e8e8e8;
+}
+
+.option.selected {
+  background-color: #dedede;
+}

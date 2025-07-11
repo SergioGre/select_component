@@ -1,0 +1,18 @@
+.button-body {
+  box-sizing: border-box;
+  border-radius: 3px;
+  border: solid 1px #0066cc;
+  padding: 10px;
+  margin: 1px;
+  outline: none;
+  transition: box-shadow 0.2s ease;
+}
+
+.button-body:focus-visible,
+.button-body:hover {
+  box-shadow: 0 0 0 1px #0066cc;
+}
+
+.button-text {
+  color: #0066cc;
+}
