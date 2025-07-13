@@ -7,7 +7,7 @@ interface ButtonProps {
 }
 
 export const Button: React.FC<ButtonProps> = ({ buttonText, onClick }) => {
-  const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
       onClick?.();
@@ -15,15 +15,13 @@ export const Button: React.FC<ButtonProps> = ({ buttonText, onClick }) => {
   };
 
   return (
-    <div
+    <input
+      type="button"
       className="button-body"
       onClick={onClick}
       onKeyDown={handleKeyDown}
-      tabIndex={0}
-      role="button"
+      value={buttonText}
       aria-label={buttonText}
-    >
-      <span className="button-text">{buttonText}</span>
-    </div>
+    />
   );
 };

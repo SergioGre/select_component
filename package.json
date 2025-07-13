@@ -1,0 +1,14 @@
+{
+  "name": "monorepo",
+  "private": true,
+  "workspaces": [
+    "node-back",
+    "react-front"
+  ],
+  "scripts": {
+    "start": "concurrently \"npm start --workspace=node-back\" \"npm start --workspace=react-front\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
