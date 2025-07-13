@@ -9,18 +9,22 @@ export const useSelectController = (
   onSelect?: (value: string) => void
 ) => {
   const [state, setState] = useState(INITIAL_SELECT_STATE);
+  const [isTyping, setIsTyping] = useState(false);
 
-  const updateState = useCallback(
-    (updates: Partial<SelectState>) =>
-      setState((prev) => ({ ...prev, ...updates })),
-    []
-  );
+  const updateState = useCallback((updates: Partial<SelectState>) => {
+    if ("filterText" in updates) {
+      setIsTyping(updates.filterText !== "");
+    }
+    setState((prev) => ({ ...prev, ...updates }));
+  }, []);
 
   const filteredOptions = useMemo(() => {
-    return options.filter((option) =>
-      option.name.toLowerCase().startsWith(state.filterText.toLowerCase())
-    );
-  }, [options, state.filterText]);
+    return isTyping
+      ? options.filter((option) =>
+          option.name.toLowerCase().startsWith(state.filterText.toLowerCase())
+        )
+      : options;
+  }, [options, state.filterText, isTyping]);
 
   const handleSelect = useCallback(
     (option: SelectOption) => {
@@ -30,6 +34,7 @@ export const useSelectController = (
         focusedIndex: -1,
         selectedOption: option,
       });
+      setIsTyping(false);
       onSelect?.(option.value);
     },
     [onSelect, updateState]
