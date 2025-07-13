@@ -5,7 +5,7 @@ import { Select, Button } from "components/atoms";
 import { useSelectedValue } from "src/hooks/useSelectedValue";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "src/store";
-import { postOption } from "src/api/optionsApi";
+import { setOption } from "src/api/optionsApi";
 import { addMessage } from "src/store/slices/messageSlice";
 interface InputFormProps {
   options: SelectOption[];
@@ -17,10 +17,9 @@ export const SelectForm: React.FC<InputFormProps> = ({ options }) => {
   const dispatch = useDispatch();
 
   const handleSubmit = async () => {
-    console.log(value);
-    if (!!value) {
+    if (value) {
       if (options.find((option) => option.value === value)) {
-        await postOption(value, dispatch);
+        await setOption(value, dispatch);
       } else {
         dispatch(addMessage("Недопустимое значение"));
       }

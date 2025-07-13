@@ -2,7 +2,7 @@ import { SelectOption } from "src/types/types";
 import { Dispatch } from "@reduxjs/toolkit";
 import { addMessage } from "../store/slices/messageSlice";
 
-const API_BASE_URL = "http://localhost:5000";
+const API_BASE_URL = "http://localhost:8080";
 const UNKNOWN_ERROR_MESSAGE = "Unknown error occurred";
 
 export async function fetchOptions(
@@ -29,7 +29,7 @@ export async function fetchOptions(
   }
 }
 
-export async function postOption(
+export async function setOption(
   value: string,
   dispatch: Dispatch
 ): Promise<void> {

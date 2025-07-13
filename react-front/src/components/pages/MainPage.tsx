@@ -11,16 +11,16 @@ export const MainPage: React.FC = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const loadData = async () => {
-      setIsLoading(true);
-      const options = await fetchOptions(dispatch);
-      if (options) {
-        setData(options);
-      }
-      setIsLoading(false);
-    };
-
-    loadData();
+    setIsLoading(true);
+    fetchOptions(dispatch)
+      .then((options) => {
+        if (options) {
+          setData(options);
+        }
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   }, []);
 
   return (
